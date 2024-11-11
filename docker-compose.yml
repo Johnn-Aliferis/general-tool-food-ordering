@@ -89,6 +89,17 @@ services:
       - postgres
       - redis
       - kafka 
+  communication-microservice:
+    image: communication-microservice-api
+    build:
+      context: .
+    ports:
+      - "8082:8080"  
+    environment:
+      - Kafka__BootstrapServers=kafka:9092
+    depends_on:
+      - kafka 
+
 
 volumes:
   postgres_data:
