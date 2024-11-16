@@ -116,6 +116,23 @@ services:
     environment:
       - HMAC_SECRET_KEY=695035ae-1a6e-4d9d-ad35-b54d6048dcf6 
 
+  payments-microservice:
+    image: payments-microservice-api
+    build:
+      context: .
+    ports:
+      - "8084:8080"
+
+  order-management-microservice:
+    image: order-management-microservice-api
+    build:
+      context: .
+    ports:
+      - "8086:8080"  
+    environment:
+    - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=food_order_db;Username=postgres;Password=password
+    depends_on:
+      - postgres
 
 volumes:
   postgres_data:
