@@ -128,8 +128,9 @@ services:
     build:
       context: .
     ports:
-      - "8086:8080"  
+      - "8086:8090"  
     environment:
+    - ASPNETCORE_URLS=http://*:8090  # Bind to a unique port inside the container
     - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=food_order_db;Username=postgres;Password=password
     depends_on:
       - postgres
